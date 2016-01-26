@@ -5,46 +5,72 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ConsoleApplication1 {
-    class EntryPoint {
+    public class EntryPoint {
         static void Main(string[] args) {
             //boardHelperVar contains the object, so the it retains the instance of the object,
             // which is the specific existance of one, in a basic sense.
             var boardHelperVar = new BoardHelper();       
             var board = boardHelperVar.InstantiateBoard();
 
-            var playerC = 5;
-            var playerR = 5;
+            var player = new Player();
             var input = ""; 
             while (input != "q") {
                 Console.Out.WriteLine("Type 'q' and enter to quit;");
                 if (input == "h") {
-                    playerC--;
+                    player.MoveLeft();
                 }
                 if (input == "j") {
-                    playerR++;
+                    player.MoveDown();
                 }             
                 if (input == "k") {
-                    playerR--;
+                    player.MoveUp();
                 }                    
                 if (input == "l") {
-                    playerC++;
+                    player.MoveRight();
                 }
                   
-                boardHelperVar.DrawBoard(board, playerC, playerR);
+                boardHelperVar.DrawBoard(board, player);
                 input = Console.ReadLine();
             }
         }
     }
+    public class Player {
+        private int playerC = 5;
+        private int playerR = 5;
+        public bool IsPlayerPosition(int c, int r) {
+            return playerR == r && playerC == c;
+        }
 
-    class BoardHelper {
+        public void MoveUp() {
+            if (playerR > 0) {
+                playerR--;
+            }
+        }
+        public void MoveDown() {
+            if (playerR < 9) {
+                playerR++;
+            }
+        }
+        public void MoveLeft() {
+            if (playerC > 0) {
+                playerC--;
+            }         
+        }
+        public void MoveRight() {
+            if (playerC < 9) {
+                playerC++;
+            }
+        }
+       }
+    public class BoardHelper {
         //this one takes a string array to make the board
-        public void DrawBoard(string[,] board, int playerC, int playerR) {
+        public void DrawBoard(string[,] board, Player player) {
             Console.Out.WriteLine(" ----------");
 
             for (var r = 0; r < 10; r++) {
                 var rowString = "";
                 for (var c = 0; c < 10; c++) {
-                    if (playerR == r && playerC == c) {
+                    if (player.IsPlayerPosition(c, r)) {
                         rowString += "@";
                     } else {
                         rowString += board[r, c];
