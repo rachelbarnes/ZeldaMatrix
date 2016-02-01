@@ -11,7 +11,9 @@ namespace ConsoleApplication1 {
 
             var player = new Player(board.size);
 
- 
+            var collectable = new Collectable(4, 2);
+
+
             var input = "";
             while (input != "q") {
                 if (input == "h") {
@@ -27,7 +29,7 @@ namespace ConsoleApplication1 {
                     player.MoveRight();
                 }
 
-                board.Draw(player);
+                board.Draw(player, collectable);
                 input = Console.ReadLine();
                 Console.SetCursorPosition(0, Console.CursorTop - 1);
             }
@@ -47,7 +49,7 @@ namespace ConsoleApplication1 {
             }
         }
 
-        public void Draw(Player player) {
+        public void Draw(Player player, Collectable collectable) {
             Console.Out.WriteLine(" ");
             //Console.Out.WriteLine( " ----------");
             var boundingBar = " ";
@@ -62,19 +64,23 @@ namespace ConsoleApplication1 {
                     if (player.IsPlayerPosition(c, r)) {
                         rowString += "@";
                     }
+                    else if (collectable.IsCollectablePosition(c, r)) {
+                        rowString += "C";
+                    }
                     else {
                         rowString += this.board[r, c];
                     }
                 }
                 Console.Out.WriteLine(String.Format("|{0}|", rowString));
+
             }
+
             Console.Out.WriteLine(boundingBar);
             Console.Out.WriteLine("Type 'q' and enter to quit;");
             Console.SetCursorPosition(0, Console.CursorTop - (size + 4));
         }
-
-
     }
+
     public class Player {
         private int playerC;
         private int playerR;
@@ -113,58 +119,22 @@ namespace ConsoleApplication1 {
     }
 
     public class Collectable {
-        private int collectR;
-        private int collectC;
-        int size;
+        private int collectableCItem;
+        private int collectableRItem;
 
-        private Collectable(int size) {
-            this.size = size;
+        public Collectable(int stPosCollC, int stPosCollR) {
+            collectableCItem = stPosCollC;
+            collectableRItem = stPosCollR;
         }
+        //need to place a spot for it to start on the board
+        public bool IsCollectablePosition(int collectC, int collectR) {
+            return collectableCItem == collectC && collectableRItem == collectR;
+        }
+
 
     }
 }
-    //    public object CollectableStartPosition(int startPositionCollectableC, int startPositionCollectableR) {
-    //        collectableCItem = startPositionCollectableC;
-    //        collectableRItem = startPositionCollectableR;
-     //   }
-        // return CollectableStartPosition(startPositionCollectableC, startPositionCollectableR);
-
-    //    public bool CollectablePosition(int collectC, int collectR) {
-    //        return collectableCItem == collectC && collectableRItem == collectR;
-    //    }
-
-    //    public void DrawCharacter(Collectable collectable) {
-    //        for (collectR = 0; collectR < size; collectR++) {
-    //            var rowStringCollect = "";
-    //        }
-    //        for (collectC = 0, collectC < size; collectC++) {
-    //          if (collectable.CollectablePosition(collectC, collectR)) {
-    //                rowStringCollect = "!"; }
-
-    //            else {
-    //                return rowStringCollect += board[collectC, collectR];
-    //            }
-    //        }
-    //        if (collectable.CollectablePosition(collectC, collectR)) {
-
-    //        } } } }
-    //    public void Draw(Player player) {
-    //          Console.Out.WriteLine(boundingBar);
-     
-    //        for (var r = 0; r < size; r++) {
-    //            var rowString = "";
-    //        for (var c = 0; c < size; c++) {
-    //            if (player.IsPlayerPosition(c, r)) {
-    //                    rowString += "@";
-    //                }
-    //                else {
-    //                   rowString += this.board[r, c];
-    //                }
-    //            }
-    //            Console.Out.WriteLine(String.Format("|{0}|", rowString));
- 
 
 
 
 
-                                                    
