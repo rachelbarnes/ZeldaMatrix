@@ -6,39 +6,46 @@ using System.Threading.Tasks;
 
 namespace ConsoleApplication1 {
   public class MoveableItem {
-    public int C;
-    public int R;
-    public int size;   
+    public int _C;
+    public int _R;
+    public int _Size;
     //what i changed to make this work future Rachel:
     //i decared the field (directly above) and then defined
     //the third parameter of size (direclty below)
     public MoveableItem(int C, int R, int size) {
-      this.C = C;
-      this.R = R;
-      this.size = size;
+      this._C = C;
+      this._R = R;
+      this._Size = size;
     }
     public bool IsPosition(int c, int r) {
-      return R == r && C == c;
+      return _R == r && _C == c;
     }
     public void MoveUp() {
-      if (R > 0) {
-        R--;
+      if (this._R > 0) {
+        this._R--;
       }
     }
     public void MoveDown() {
-      if (R < (size - 1)) {
-        R++;
+      if (this._R < (this._Size - 1)) {
+        this._R++;
       }
     }
     public void MoveLeft() {
-      if (C > 0) {
-        C--;
+      if (_C > 0) {
+        _C--;
       }
     }
     public void MoveRight() {
-      if (C < (size - 1)) {
-        C++;
+      if (_C < (_Size - 1)) {
+        _C++;
       }
+    }
+
+
+
+    public bool CollidesWith(MoveableItem other) {
+      return _C == other._C && _R == other._R;
+
     }
   }
 }

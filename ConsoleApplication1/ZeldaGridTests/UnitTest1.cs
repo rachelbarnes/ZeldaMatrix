@@ -60,8 +60,7 @@ namespace ZeldaGridTests {
 
       Assert.AreEqual(4, distance);
     }
-    //THIS SHOULD BE FAILING...THIS IS ONLY LOOKING AT THE COLUMNS, 
-    //NOT THE COLUMNS AND THE ROWS
+
     [TestMethod]
     public void DefiningTheMs() {
       var m1 = new MoveableItem(8, 1, 10);
@@ -72,6 +71,15 @@ namespace ZeldaGridTests {
 
       Assert.AreEqual(9, distance);
     }
+
+
+    [TestMethod]
+    public void CharacterCollision() {
+      var m1 = new MoveableItem(1, 1, 10);
+      var m2 = new MoveableItem(1, 1, 10);
+
+      Assert.IsTrue(m1.CollidesWith(m2));
+    }
   }
 }
- 
+

@@ -6,28 +6,28 @@ using System.Threading.Tasks;
 
 namespace ConsoleApplication1 {
   public class Player {
-    public MoveableItem item;
-    public int currentPlayerCPosition;
-    public int currentPlayerRPosition;
+    public MoveableItem _Item;
+   // public int currentPlayerCPosition;
+   // public int currentPlayerRPosition;
 
     public Player(int size) {
-      this.item = new MoveableItem((size / 2), (size / 2), size);
+      this._Item = new MoveableItem((size / 2), (size / 2), size);
     }
 
     public bool IsPlayerPosition(int c, int r) {
-      return this.item.IsPosition(c, r);
+      return this._Item.IsPosition(c, r);
     }
     public void MoveUp() {
-      this.item.MoveUp();
+      this._Item.MoveUp();
     }
     public void MoveDown() {
-      this.item.MoveDown();
+      this._Item.MoveDown();
     }
     public void MoveLeft() {
-      this.item.MoveLeft();
+      this._Item.MoveLeft();
     }
     public void MoveRight() {
-      this.item.MoveRight();
+      this._Item.MoveRight();
     }
   }
 
