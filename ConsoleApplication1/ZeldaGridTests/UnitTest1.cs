@@ -62,6 +62,17 @@ namespace ZeldaGridTests {
     }
 
     [TestMethod]
+    public void Colliding() {
+      var m1 = new MoveableItem(1, 1, 10);
+      var m2 = new MoveableItem(1, 1, 10);
+
+      var distanceCalc = new DistanceCalculator();
+      int distance = distanceCalc.distance(m1, m2);
+
+      Assert.AreEqual(0, distance);
+    }
+
+    [TestMethod]
     public void DefiningTheMs() {
       var m1 = new MoveableItem(8, 1, 10);
       var m2 = new MoveableItem(1, 5, 10);

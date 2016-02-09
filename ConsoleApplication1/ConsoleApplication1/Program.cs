@@ -45,12 +45,12 @@ namespace ConsoleApplication1 {
   // have collectable move randomly on a "void Move()" method     (DONE)
   // have collectable be triggered by player proximity via a "void UpdateWithPlayer(Player p) method"  (DONE)
   // have collective be triggered and start to "run" in a direction when the player is close  (DONE)
-  //create a MoveableItem class that can be used by Collectable and Player in their classes (to help with duplicated logic)   (DONE)
-
+  // create a MoveableItem class that can be used by Collectable and Player in their classes (to help with duplicated logic)   (DONE)
+  // when the player hits the collectable, the player moves differently (TBD)
+  // the collectable disappears when you collide with it  (DONE)
 
 } //ns
 
-// if the player gets within 3 spaces of the collectable, have the collectable move in the same 
 
 
 

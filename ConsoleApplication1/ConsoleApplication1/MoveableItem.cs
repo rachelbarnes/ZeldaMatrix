@@ -42,10 +42,8 @@ namespace ConsoleApplication1 {
     }
 
 
-
-    public bool CollidesWith(MoveableItem other) {
-      return _C == other._C && _R == other._R;
-
+     public bool CollidesWith(MoveableItem other) {
+      return this._C == other._C && this._R == other._R;
     }
-  }
+ }
 }
