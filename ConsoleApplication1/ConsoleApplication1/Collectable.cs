@@ -9,11 +9,19 @@ namespace ConsoleApplication1 {
     public MoveableItem _Item;
     private bool _PlayerGotTooClose;
     private bool _PlayerCollidedWithCollectable;
+    public Random rnd; 
 
     public Collectable(int size) {
       this._Item = new MoveableItem((size / 4) + 1, (size / 4) + 1, size);
       this._PlayerGotTooClose = false;
+      this.rnd = new Random(DateTime.Now.Millisecond);
     }
+
+    public Collectable(int c, int r, int size) {
+      this._Item = new MoveableItem(c, r, size);
+      this._PlayerGotTooClose = false;
+      this.rnd = new Random(DateTime.Now.Millisecond+44);  
+    } 
 
     public void UpdateWithPlayer(Player player) {
       // use player item and this.item to see if too close, if so, make PlayerGotTooClose = true;
@@ -44,9 +52,9 @@ namespace ConsoleApplication1 {
       }
       if (_PlayerGotTooClose == false) {
 
-        Random rnd = new Random();
         var input = rnd.Next(4);
-
+        input = rnd.Next(4);
+        
         if (input == 0) {
           _Item.MoveLeft();
         }

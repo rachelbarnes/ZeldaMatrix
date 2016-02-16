@@ -19,7 +19,7 @@ namespace ConsoleApplication1 {
       }
     }
 
-    public void Draw(Player player, Collectable collectable) {
+    public void Draw(Player player, Collectable collectable, Collectable collectable2) {
       Console.Out.WriteLine(" ");
       var boundingBar = " ";
       for (var x = 0; x < _Size; x++) {
@@ -33,9 +33,9 @@ namespace ConsoleApplication1 {
           if (player.IsPlayerPosition(c, r)) {
             rowString += "@";
           }
-          else if (collectable.IsCollectablePosition(c, r)) {
+          else if (collectable.IsCollectablePosition(c, r) || (collectable2.IsCollectablePosition(c, r))) {
             rowString += "C";
-          }
+          }                       
           else {
             rowString += this._Board[r, c];
           }
