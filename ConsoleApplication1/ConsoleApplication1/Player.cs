@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 namespace ConsoleApplication1 {
   public class Player {
     public MoveableItem _Item;
-   // public int currentPlayerCPosition;
-   // public int currentPlayerRPosition;
+    public int currentNumberOfCollectedItems;
+
 
     public Player(int size) {
       this._Item = new MoveableItem((size / 2), (size / 2), size);
+      this.currentNumberOfCollectedItems = 0;
     }
 
     public bool IsPlayerPosition(int c, int r) {

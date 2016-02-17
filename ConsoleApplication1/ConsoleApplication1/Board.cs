@@ -8,6 +8,8 @@ namespace ConsoleApplication1 {
   public class Board {
     private string[,] _Board;
     public int _Size;
+    //public List<Collectable> collectableslist; 
+    //public bool player.MoveDown
 
     public Board(int size) {
       this._Size = size;
@@ -19,7 +21,7 @@ namespace ConsoleApplication1 {
       }
     }
 
-    public void Draw(Player player, Collectable collectable, Collectable collectable2) {
+    public void Draw(Player player, List<Collectable> collectables) {
       Console.Out.WriteLine(" ");
       var boundingBar = " ";
       for (var x = 0; x < _Size; x++) {
@@ -30,13 +32,25 @@ namespace ConsoleApplication1 {
       for (var r = 0; r < _Size; r++) {
         var rowString = "";
         for (var c = 0; c < _Size; c++) {
-          if (player.IsPlayerPosition(c, r)) {
-            rowString += "@";
+
+          var shouldDrawCollectable = false;
+
+          foreach (Collectable collectableItem in collectables) {
+            if (collectableItem.IsCollectablePosition(c, r)) {
+              shouldDrawCollectable = true;
+            }
           }
-          else if (collectable.IsCollectablePosition(c, r) || (collectable2.IsCollectablePosition(c, r))) {
+        
+          //var shouldDrawCollectable = collectables.Any(co => co.IsCollectablePosition(c, r));
+              //these lines of code, 44 and 38-42, are telling the program to do the same thing - they're just set up differently.
+              //the => is a lambda... read about this more. 
+
+
+          if (player.IsPlayerPosition(c, r)) {
+             rowString += "@";
+          } else if (shouldDrawCollectable) { 
             rowString += "C";
-          }                       
-          else {
+          } else {
             rowString += this._Board[r, c];
           }
         }
@@ -45,7 +59,7 @@ namespace ConsoleApplication1 {
       }
 
       Console.Out.WriteLine(boundingBar);
-      Console.Out.WriteLine("Type 'q' and enter to quit;");
+      Console.Out.WriteLine("Type 'q' and enter to quit;" + "player count:" + player.currentNumberOfCollectedItems);
       Console.SetCursorPosition(0, Console.CursorTop - (_Size + 4));
     }
   }  // class
