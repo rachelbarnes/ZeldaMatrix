@@ -8,8 +8,6 @@ namespace ConsoleApplication1 {
   public class Board {
     private string[,] _Board;
     public int _Size;
-    //public List<Collectable> collectableslist; 
-    //public bool player.MoveDown
 
     public Board(int size) {
       this._Size = size;

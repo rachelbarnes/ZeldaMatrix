@@ -13,52 +13,51 @@ namespace ConsoleApplication3 {
     public int lengthOfSubstring = 3;
     public List<string> TextLines = new List<string>();
     public List<string> zerothCharacter, firstCharacter, secondCharacter, thirdCharacter, fourthCharacter, fifthCharacter, sixthCharacter, seventhCharacter, eigthCharacter;
-
+    public List<string> MatrixedDigit = new List<string>(); 
     public static void Main(string[] args) {
       var bankOCR = new BankOCR();
-      //Console.WriteLine("Hello World");
-      //Console.ReadLine();
-      //Console.WriteLine("Peanuts");
       var TextLines = bankOCR.TextLines;
-      Console.WriteLine(bankOCR.ConvertingOneLineAtATime());
+      Console.WriteLine(TextLines); 
       Console.WriteLine(bankOCR.zerothCharacter);  
       Console.ReadLine();
-
-
     }
 
     public int ReadFile(string v) {
       return 0;
     }
-    public List<string> ConvertingOneLineAtATime() {
+    public void ConvertingOneLineAtATime() {
       string line;
       var file = new System.IO.StreamReader("firstOCRFile.txt");
       while ((line = file.ReadLine()) != null) {
         Console.WriteLine(line);
         TextLines.Add(line);
       }
-      return TextLines;
-
     }
 
 
     public List<string> GetNthCharacter(int CharacterMatrixIndex) {
-      List<string> MatrixedCharacter = new List<string>();
+      var bankOCR = new BankOCR();
+      TextLines = bankOCR.TextLines; 
+     /* string result = "";
+      for(int i =0; i<=3; i++) {
+        result += TextLines[i].Substring(CharacterMatrixIndex * 3, lengthOfSubstring);
+      }
+      */
       string firstRow = TextLines[0].Substring(CharacterMatrixIndex * 3, lengthOfSubstring);
       string secondRow = TextLines[1].Substring(CharacterMatrixIndex * 3, lengthOfSubstring);
       string thirdRow = TextLines[2].Substring(CharacterMatrixIndex * 3, lengthOfSubstring);
       string fourthRow = TextLines[3].Substring(CharacterMatrixIndex * 3, lengthOfSubstring);
 
-      MatrixedCharacter.Add(firstRow);
-      MatrixedCharacter.Add(secondRow);
-      MatrixedCharacter.Add(thirdRow);
-      MatrixedCharacter.Add(fourthRow);
+      MatrixedDigit.Add(firstRow);
+      MatrixedDigit.Add(secondRow);
+      MatrixedDigit.Add(thirdRow);
+      MatrixedDigit.Add(fourthRow);
 
-      return MatrixedCharacter;
+      return MatrixedDigit;
     }
 
     public void AssigningCharactersToMatrixedCharacters() {
-      var
+      
       zerothCharacter = GetNthCharacter(0);
       firstCharacter = GetNthCharacter(1);
       secondCharacter = GetNthCharacter(2);
@@ -70,39 +69,12 @@ namespace ConsoleApplication3 {
       eigthCharacter = GetNthCharacter(8);
     }
 
-    public int? ComparingMatrixedCharactersWithCharacterValuesInDictionaries() { //will the return type be a List<int> or just int
+    public int? ComparingMatrixedDigitsWithCharacterValuesInDictionaries() { //will the return type be a List<int> or just int
       var DrawnNumberCharacters = new DrawnNumberCharacters();
-      foreach (string line in TextLines) {
+    //  foreach (string s in MatrixedDigit) {//MatrixedDigit in TextLines) {
         if (zerothCharacter == DrawnNumberCharacters.Numbers[1])
           return 1;
-
-        if (firstCharacter == DrawnNumberCharacters.Numbers[1])
-          return 1;
-
-        if (secondCharacter == DrawnNumberCharacters.Numbers[1])
-          return 1;
-
-        if (thirdCharacter == DrawnNumberCharacters.Numbers[1])
-          return 1;
-
-        if (fourthCharacter == DrawnNumberCharacters.Numbers[1])
-          return 1;
-
-        if (fifthCharacter == DrawnNumberCharacters.Numbers[1])
-          return 1;
-
-        if (sixthCharacter == DrawnNumberCharacters.Numbers[1])
-          return 1;
-
-        if (seventhCharacter == DrawnNumberCharacters.Numbers[1])
-          return 1;
-
-        if (eigthCharacter == DrawnNumberCharacters.Numbers[1])
-          return 1;
-
-      }
-
-      return null;
+        return null;
 
     }
     //then we can parse the strings in the matrix and compare them to the dictionary we've created
@@ -115,6 +87,24 @@ namespace ConsoleApplication3 {
   }
 }
 
+
+
+        //if (firstCharacter == DrawnNumberCharacters.Numbers[1])
+        //  return 1;
+        //if (secondCharacter == DrawnNumberCharacters.Numbers[1])
+        //  return 1;
+        //if (thirdCharacter == DrawnNumberCharacters.Numbers[1])
+        //  return 1;
+        //if (fourthCharacter == DrawnNumberCharacters.Numbers[1])
+        //  return 1;
+        //if (fifthCharacter == DrawnNumberCharacters.Numbers[1])
+        //  return 1;
+        //if (sixthCharacter == DrawnNumberCharacters.Numbers[1])
+        //  return 1;
+        //if (seventhCharacter == DrawnNumberCharacters.Numbers[1])
+        //  return 1;
+        //if (eigthCharacter == DrawnNumberCharacters.Numbers[1])
+        //  return 1;
 
 
 

@@ -13,26 +13,48 @@ namespace Tests {
     public void TestingComparingMatrixedCharacterswithCharacterValuesInDIctionary() {
       var bankOCR = new BankOCR();
       var drawnNumberCharacters = new DrawnNumberCharacters();
-        
-
+      bankOCR.ConvertingOneLineAtATime();
+      bankOCR.GetNthCharacter(0);
+      
       Assert.AreEqual(bankOCR.zerothCharacter, drawnNumberCharacters.Numbers[1]);
     }
 
     [Test]
-    public void TestingFirstOCRFile() {
-      var bankOCR = new BankOCR(); 
-      List<string> input = new List<string> {
-        "111222333",
-        "444555666",
-        "777888999",
-        "         "
-       };
-      bankOCR.TextLines = input; 
-      
-      Assert.AreEqual(input, bankOCR.ReadFile("firstOCRFile.txt")); 
+    public void TestingFirstOCRFileFirstLine() {
+      var bankOCR = new BankOCR();
+      bankOCR.ConvertingOneLineAtATime();
+      List<string> textStrings = bankOCR.TextLines;
+      string actualString =
+        "                           ";
+      Assert.AreEqual(textStrings[0], actualString);
     }
 
     [Test]
+    public void TestingFirstOCRFileSecondLine() {
+      var bankOCR = new BankOCR();
+      bankOCR.ConvertingOneLineAtATime();
+      List<string> textStrings = bankOCR.TextLines;
+      string actualString =
+        "  |  |  |  |  |  |  |  |  |";
+      Assert.AreEqual(textStrings[2], actualString);
+    }
+
+    [Test]
+    public void TestingFirstOCRFinalListTest() {
+      var bankOCR = new BankOCR();
+      bankOCR.ConvertingOneLineAtATime();
+      List<string> textStrings = bankOCR.TextLines; 
+      List<string> actualList = new List<string> {
+        "                           ",
+        "  |  |  |  |  |  |  |  |  |",
+        "  |  |  |  |  |  |  |  |  |",
+        "                           "
+      };
+      Assert.AreEqual(actualList, textStrings);
+    }
+
+    [Test]
+
     public void TestingTheComparisonBetweenTheDrawnAndTheInts() {
       var bankOCR = new BankOCR();
       var drawnNumberCharacters = new DrawnNumberCharacters();
@@ -66,7 +88,7 @@ namespace Tests {
     }
 
     [Test]
-    public void TestingDictionaryMatrixCharacter(){
+    public void TestingDictionaryMatrixCharacter() {
       var bankOCR = new BankOCR();
       var drawnNumberCharacters = new DrawnNumberCharacters();
       List<string> testForDrawnNumberOne = new List<string> {
@@ -78,13 +100,6 @@ namespace Tests {
       Assert.AreEqual(testForDrawnNumberOne, drawnNumberCharacters.Numbers[1]);
     }
 
-    [Test]
-    public void TestToCompareMatrixedCharacterWithCharacterListValeus() {
-      var bankOCR = new BankOCR();
-      var dictionaryOfNumbers = new DrawnNumberCharacters();
-
-      Assert.AreEqual(bankOCR.zerothCharacter, dictionaryOfNumbers.one);
-    }
 
     [Test]
     public void TestingSubstrings() {

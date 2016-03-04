@@ -76,7 +76,7 @@ namespace ConsoleApplication1 {
 // create a MoveableItem class that can be used by Collectable and Player in their classes (to help with duplicated logic)   (DONE)
 // the collectable disappears when you collide with it  (DONE)
 // start game with several collectables   (working on it, paired with the second task)       (DONE)
-// keep track and display count of collected items on player
+// keep track and display count of collected items on player (DONE)
 // 1. replace character display with a <^v> pointing a certain direction of their last move
 // 2. have a new action for player (hit SPACE) that shoots a bow in the direction you last faced one space at a time
 // 3. have bow shoot also collect a collectable (so you don't have to touch it)
