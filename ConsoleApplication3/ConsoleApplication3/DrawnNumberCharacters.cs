@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 
 namespace ConsoleApplication3 {
 
-  //i think i will have to create lists to subsitute the dictionary - I can't seem to call a dictionary key
-  //or at least im having a hard time doing so
   public class DrawnNumberCharacters {
     // public void AddingToTheDictionary() {
     public Dictionary<int, List<string>> Numbers = new Dictionary<int, List<string>>() {
